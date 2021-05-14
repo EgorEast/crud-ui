@@ -1,0 +1,22 @@
+{
+  "listOfPeople": [
+    {
+      "firstName": "Jill",
+      "lastName": "Smith",
+      "age": 50,
+      "id": 1
+    },
+    {
+      "firstName": "Eve",
+      "lastName": "Jackson",
+      "age": 94,
+      "id": 2
+    },
+    {
+      "firstName": "Ted",
+      "lastName": "Trip",
+      "age": 48,
+      "id": 3
+    }
+  ]
+}
