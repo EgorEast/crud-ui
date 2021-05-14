@@ -9,8 +9,8 @@ function Table() {
 			<thead className='table-head'>
 				<tr>
 					<th>№</th>
-					<th>Firstname</th>
-					<th>Lastname</th>
+					<th>First Name</th>
+					<th>Last Name</th>
 					<th>Age</th>
 					<th></th>
 				</tr>
@@ -22,8 +22,8 @@ function Table() {
 							<Persone
 								key={`persone-${persone.id}`}
 								id={persone.id}
-								firstname={persone.firstname}
-								lastname={persone.lastname}
+								firstName={persone.firstName}
+								lastName={persone.lastName}
 								age={persone.age}
 							/>
 						);

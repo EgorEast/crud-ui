@@ -4,15 +4,15 @@ import TableContext from '../tableContext';
 function AddEntry() {
 	let { addEntry } = useContext(TableContext);
 
-	let [firstname, setFirstname] = useState('');
-	let [lastname, setLastname] = useState('');
+	let [firstName, setFirstname] = useState('');
+	let [lastName, setLastname] = useState('');
 	let [age, setAge] = useState('');
 
 	function submitHandler(event) {
 		event.preventDefault();
 
-		if (firstname && lastname && age) {
-			addEntry(firstname, lastname, age);
+		if (firstName && lastName && age) {
+			addEntry(firstName, lastName, age);
 			setFirstname('');
 			setLastname('');
 			setAge('');
@@ -25,22 +25,22 @@ function AddEntry() {
 				<input
 					type='text'
 					className='input'
-					value={firstname}
-					name='firstname'
+					value={firstName}
+					name='firstName'
 					onChange={(event) => {
 						setFirstname(event.target.value);
 					}}
-					placeholder='FIrstname'
+					placeholder='FIrst Name'
 				></input>
 				<input
 					type='text'
 					className='input'
-					value={lastname}
-					name='lastname'
+					value={lastName}
+					name='lastName'
 					onChange={(event) => {
 						setLastname(event.target.value);
 					}}
-					placeholder='Lastname'
+					placeholder='Last Name'
 				></input>
 				<input
 					type='number'

@@ -3,16 +3,16 @@ import TableContext from '../tableContext';
 
 function Persone({
 	id = -1,
-	firstName: firstname = '',
-	lastName: lastname = '',
+	firstName: firstName = '',
+	lastName: lastName = '',
 	age = -1,
 }) {
 	let { removeEntry } = useContext(TableContext);
 	return (
 		<tr>
 			<td>{id}</td>
-			<td>{firstname}</td>
-			<td>{lastname}</td>
+			<td>{firstName}</td>
+			<td>{lastName}</td>
 			<td>{age}</td>
 			<td className='td-delete-button'>
 				<button
