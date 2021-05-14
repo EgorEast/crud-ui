@@ -1,53 +1,61 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import TableContext from '../tableContext';
 
-function AddEntry({ onCreate = () => {} }) {
-	let [firstName, setFirstName] = useState('');
-	let [lastName, setLastName] = useState('');
+function AddEntry() {
+	let { addEntry } = useContext(TableContext);
+
+	let [firstname, setFirstname] = useState('');
+	let [lastname, setLastname] = useState('');
 	let [age, setAge] = useState('');
 
 	function submitHandler(event) {
 		event.preventDefault();
-		if (firstName && lastName && age) {
-			onCreate(firstName, lastName, age);
-			setFirstName('');
-			setLastName('');
+
+		if (firstname && lastname && age) {
+			addEntry(firstname, lastname, age);
+			setFirstname('');
+			setLastname('');
 			setAge('');
 		} else console.log('Заполните все поля');
 	}
 
 	return (
 		<form className='add-form' onSubmit={submitHandler}>
-			<input
-				type='text'
-				className='input'
-				value={firstName}
-				name='firstName'
-				onChange={(event) => {
-					setFirstName(event.target.value);
-				}}
-				placeholder='FIrst Name'
-			></input>
-			<input
-				type='text'
-				className='input'
-				value={lastName}
-				name='lastName'
-				onChange={(event) => {
-					setLastName(event.target.value);
-				}}
-				placeholder='Last Name'
-			></input>
-			<input
-				type='number'
-				className='input'
-				value={age}
-				name='age'
-				onChange={(event) => {
-					setAge(event.target.value);
-				}}
-				placeholder='Age'
-			></input>
-			<button type='submit'>add</button>
+			<div>
+				<input
+					type='text'
+					className='input'
+					value={firstname}
+					name='firstname'
+					onChange={(event) => {
+						setFirstname(event.target.value);
+					}}
+					placeholder='FIrstname'
+				></input>
+				<input
+					type='text'
+					className='input'
+					value={lastname}
+					name='lastname'
+					onChange={(event) => {
+						setLastname(event.target.value);
+					}}
+					placeholder='Lastname'
+				></input>
+				<input
+					type='number'
+					className='input'
+					value={age}
+					name='age'
+					onChange={(event) => {
+						setAge(event.target.value);
+					}}
+					placeholder='Age'
+				></input>
+			</div>
+			<div>
+				<button type='submit'>add</button>
+			</div>
 		</form>
 	);
 }
