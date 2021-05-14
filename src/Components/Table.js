@@ -22,8 +22,8 @@ function Table() {
 							<Persone
 								key={`persone-${persone.id}`}
 								id={persone.id}
-								firstName={persone.firstName}
-								lastName={persone.lastName}
+								firstname={persone.firstname}
+								lastname={persone.lastname}
 								age={persone.age}
 							/>
 						);
