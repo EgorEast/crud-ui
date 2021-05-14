@@ -1,12 +1,15 @@
 import React from 'react';
 
-function Persone({ firstName = '', lastName = '', age = -1 }) {
-	return (
+function Persone({ id = -1, firstName = '', lastName = '', age = -1 }) {
+	return [
 		<tr>
+			<td>{id}</td>
 			<td>{firstName}</td>
 			<td>{lastName}</td>
 			<td>{age}</td>
-		</tr>
-	);
+			<button>&times;</button>
+		</tr>,
+		,
+	];
 }
 export default Persone;

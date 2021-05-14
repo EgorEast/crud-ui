@@ -8,9 +8,11 @@ function Table() {
 		<table className='table'>
 			<thead className='table-head'>
 				<tr>
+					<th>№</th>
 					<th>Firstname</th>
 					<th>Lastname</th>
 					<th>Age</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody className='table-body'>
@@ -19,6 +21,7 @@ function Table() {
 						return (
 							<Persone
 								key={`persone-${persone.id}`}
+								id={persone.id}
 								firstName={persone.firstName}
 								lastName={persone.lastName}
 								age={persone.age}
