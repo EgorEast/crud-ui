@@ -16,9 +16,13 @@ function App() {
 		);
 	}
 
+	function removeEntry(id) {
+		setPersone(listOfPeople.filter((persone) => persone.id !== id));
+	}
+
 	return (
-		<TableContext.Provider value={{ listOfPeople, setPersone }}>
-			<AddEntry onCreate={addEntry} />
+		<TableContext.Provider value={{ listOfPeople, addEntry, removeEntry }}>
+			<AddEntry key='add-entry' />
 			<Table key='table' />
 		</TableContext.Provider>
 	);
