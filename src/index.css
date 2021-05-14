@@ -17,3 +17,16 @@ td {
 .add-form {
 	margin: 1rem 0;
 }
+
+.td-delete-button {
+	padding: 0;
+}
+.delete-button {
+	margin: 0;
+	border: none;
+	height: 100%;
+	background: none;
+	/* border-radius: 0; */
+	justify-content: center;
+	text-align: center;
+}
