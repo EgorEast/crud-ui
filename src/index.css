@@ -1,5 +1,19 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.table {
+	border-collapse: collapse;
+	border: 2px solid grey;
+}
+
+th,
+td {
+	border: 1px solid grey;
+}
+
+.add-form {
+	margin: 1rem 0;
 }
