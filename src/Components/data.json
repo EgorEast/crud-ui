@@ -1,25 +1,26 @@
-{
-  "listOfPeople": [
-    {
-      "id": 1,
-      "firstName": "Jill",
-      "lastName": "Smith",
-      "age": 50,
-      "isRelevant": true
+[
+  {
+    "_id":"60a18c1aae66af078a511354",
+    "data":{
+      "name":"Trevis",
+      "age":"50"
     },
-    {
-      "id": 2,
-      "firstName": "Eve",
-      "lastName": "Jackson",
-      "age": 94,
-      "isRelevant": true
+    "__v":0
+  },
+  {
+    "_id":"60a18db5ae66af078a511356",
+    "data":{
+      "name":"Rob",
+      "age":"41"
     },
-    {
-      "id": 3,
-      "firstName": "Ted",
-      "lastName": "Trip",
-      "age": 48,
-      "isRelevant": true
-    }
-  ]
-}
+    "__v":0
+  },
+  {
+    "_id":"60a20612ae66af078a511365",
+    "data":{
+      "name":"John",
+      "age":"22"
+    },
+    "__v":0
+  }
+]
