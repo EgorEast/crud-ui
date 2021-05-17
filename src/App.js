@@ -4,6 +4,7 @@ import './App.css';
 import TableContext from './tableContext';
 import AddEntry from './Components/AddEntry';
 import Changes from './Components/Changes';
+import axios from 'axios';
 
 function App() {
 	let [error, setError] = useState(null);
@@ -11,18 +12,16 @@ function App() {
 	let [peopleList, setPeopleList] = useState([]);
 
 	useEffect(() => {
-		fetch('http://178.128.196.163:3000/api/records')
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					setLoaded(true);
-					setPeopleList(result);
-				},
-				(error) => {
-					setLoaded(true);
-					setError(error);
-				}
-			);
+		axios
+			.get('http://178.128.196.163:3000/api/records')
+			.then((result) => {
+				setLoaded(true);
+				setPeopleList(result.data);
+			})
+			.catch((error) => {
+				setLoaded(true);
+				setError(error);
+			});
 	}, []);
 
 	function addEntry(name, age, _id, __v) {
