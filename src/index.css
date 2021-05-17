@@ -4,9 +4,15 @@ body {
 	font-family: sans-serif;
 }
 
+.content-container {
+	margin: auto;
+	width: 511px;
+}
+
 .table {
 	border-collapse: collapse;
 	border: 2px solid grey;
+	margin: auto;
 }
 
 th,
@@ -26,7 +32,12 @@ td {
 	border: none;
 	height: 100%;
 	background: none;
-	/* border-radius: 0; */
 	justify-content: center;
 	text-align: center;
+}
+
+.chandes-container {
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
 }

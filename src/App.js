@@ -3,6 +3,7 @@ import Table from './Components/Table';
 import './App.css';
 import TableContext from './tableContext';
 import AddEntry from './Components/AddEntry';
+import Changes from './Components/Changes';
 
 function App() {
 	let [error, setError] = useState(null);
@@ -23,10 +24,6 @@ function App() {
 				}
 			);
 	}, []);
-
-	peopleList.map((persone, index) => {
-		persone.index = index;
-	});
 
 	function addEntry(name, age, _id, __v) {
 		setPeopleList(
@@ -49,8 +46,11 @@ function App() {
 	else
 		return (
 			<TableContext.Provider value={{ peopleList, addEntry, removeEntry }}>
-				<AddEntry key='add-entry' />
-				<Table key='table' />
+				<div className='content-container'>
+					<AddEntry key='add-entry' />
+					<Table key='table' />
+					<Changes />
+				</div>
 			</TableContext.Provider>
 		);
 }
