@@ -16,19 +16,19 @@ function Table() {
 				</tr>
 			</thead>
 			<tbody className='table-body'>
-				{[
-					peopleList.map((persone, index) => {
-						return (
+				{peopleList.map((persone, index) => {
+					return (
+						<tr>
+							<td>{index + 1}</td>
 							<Persone
 								key={`persone-${persone._id}`}
-								index={index}
 								id={persone._id}
 								name={persone.data.name}
 								age={persone.data.age}
 							/>
-						);
-					}),
-				]}
+						</tr>
+					);
+				})}
 			</tbody>
 			<tfoot></tfoot>
 		</table>

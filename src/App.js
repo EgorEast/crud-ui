@@ -36,7 +36,7 @@ function App() {
 		);
 	}
 
-	function removeEntry(index, id) {
+	function removeEntry(id) {
 		// if (peopleList[index].__v == 0) {
 		// 	console.log('Не надо удалять');
 		// } else {
