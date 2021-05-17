@@ -4,17 +4,17 @@ import TableContext from '../tableContext';
 function AddEntry() {
 	let { addEntry } = useContext(TableContext);
 
-	let [firstName, setFirstname] = useState('');
-	let [lastName, setLastname] = useState('');
+	let [name, setName] = useState('');
 	let [age, setAge] = useState('');
+	let [id, setId] = useState('');
 
 	function submitHandler(event) {
 		event.preventDefault();
 
-		if (firstName && lastName && age) {
-			addEntry(firstName, lastName, age);
-			setFirstname('');
-			setLastname('');
+		if (name && id && age) {
+			addEntry(name, age, id, 0);
+			setName('');
+			setId('');
 			setAge('');
 		} else console.log('Заполните все поля');
 	}
@@ -25,22 +25,12 @@ function AddEntry() {
 				<input
 					type='text'
 					className='input'
-					value={firstName}
+					value={name}
 					name='firstName'
 					onChange={(event) => {
-						setFirstname(event.target.value);
+						setName(event.target.value);
 					}}
-					placeholder='FIrst Name'
-				></input>
-				<input
-					type='text'
-					className='input'
-					value={lastName}
-					name='lastName'
-					onChange={(event) => {
-						setLastname(event.target.value);
-					}}
-					placeholder='Last Name'
+					placeholder='Name'
 				></input>
 				<input
 					type='number'
@@ -51,6 +41,16 @@ function AddEntry() {
 						setAge(event.target.value);
 					}}
 					placeholder='Age'
+				></input>
+				<input
+					type='text'
+					className='input'
+					value={id}
+					name='ID'
+					onChange={(event) => {
+						setId(event.target.value);
+					}}
+					placeholder='ID'
 				></input>
 			</div>
 			<div>

@@ -3,28 +3,28 @@ import Persone from './Persone';
 import TableContext from '../tableContext';
 
 function Table() {
-	let { listOfPeople } = useContext(TableContext);
+	let { peopleList } = useContext(TableContext);
 	return (
 		<table className='table'>
 			<thead className='table-head'>
 				<tr>
 					<th>№</th>
-					<th>First Name</th>
-					<th>Last Name</th>
+					<th>Name</th>
 					<th>Age</th>
+					<th>ID</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody className='table-body'>
 				{[
-					listOfPeople.map((persone, index) => {
+					peopleList.map((persone, index) => {
 						return (
 							<Persone
-								key={`persone-${persone.id}`}
-								id={persone.id}
-								firstName={persone.firstName}
-								lastName={persone.lastName}
-								age={persone.age}
+								key={`persone-${persone._id}`}
+								index={index}
+								id={persone._id}
+								name={persone.data.name}
+								age={persone.data.age}
 							/>
 						);
 					}),
