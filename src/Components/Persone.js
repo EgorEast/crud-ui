@@ -4,10 +4,10 @@ import TableContext from '../tableContext';
 function Persone({ id = -1, name = '', age = -1 }) {
 	let { removeEntry } = useContext(TableContext);
 	return [
-		<td>{name}</td>,
-		<td>{age}</td>,
-		<td>{id}</td>,
-		<td className='td-delete-button'>
+		<td key={`name-${id}`}>{name}</td>,
+		<td key={`ade-${id}`}>{age}</td>,
+		<td key={`id-${id}`}>{id}</td>,
+		<td className='td-delete-button' key={`td-delete-button-${id}`}>
 			<button
 				className='delete-button'
 				onClick={() => {

@@ -18,10 +18,10 @@ function Table() {
 			<tbody className='table-body'>
 				{peopleList.map((persone, index) => {
 					return (
-						<tr>
+						<tr key={`tr-${index}`}>
 							<td>{index + 1}</td>
 							<Persone
-								key={`persone-${persone._id}`}
+								key={`persone-${index}`}
 								id={persone._id}
 								name={persone.data.name}
 								age={persone.data.age}

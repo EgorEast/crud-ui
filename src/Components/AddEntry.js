@@ -54,7 +54,9 @@ function AddEntry() {
 				></input>
 			</div>
 			<div>
-				<button type='submit'>add</button>
+				<button className='add-btn' type='submit'>
+					add
+				</button>
 			</div>
 		</form>
 	);
