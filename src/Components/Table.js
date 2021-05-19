@@ -13,6 +13,7 @@ function Table() {
 					<th>Age</th>
 					<th>ID</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody className='table-body'>
