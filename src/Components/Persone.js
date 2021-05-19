@@ -11,6 +11,7 @@ function Persone(persone) {
 		<td key={`name-${persone.id}`}>
 			<input
 				key={`name-input-${persone.id}`}
+				className='persone__input'
 				type='text'
 				value={name}
 				onChange={(event) => {
@@ -22,6 +23,7 @@ function Persone(persone) {
 		<td key={`ade-${persone.id}`}>
 			<input
 				key={`age-input-${persone.id}`}
+				className='persone__input'
 				type='text'
 				value={age}
 				onChange={(event) => {

@@ -27,7 +27,11 @@ td {
 .add-form__input {
 	min-width: 30px;
 }
-
+.persone__input {
+	max-width: 100px;
+}
+.persone__input_active {
+}
 .td-delete-button {
 	padding: 0;
 }
