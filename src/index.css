@@ -5,8 +5,6 @@ body {
 }
 
 .content-container {
-	margin: auto;
-	width: 511px;
 }
 
 .table {
@@ -21,7 +19,13 @@ td {
 }
 
 .add-form {
-	margin: 1rem 0;
+	padding: 1rem 0;
+	margin: auto;
+	max-width: 380px;
+}
+
+.add-form__input {
+	min-width: 30px;
 }
 
 .td-delete-button {
