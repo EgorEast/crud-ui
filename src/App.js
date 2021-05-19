@@ -11,6 +11,7 @@ function App() {
 	let [error, setError] = useState(null);
 	let [isLoaded, setLoaded] = useState(false);
 	let [peopleList, setPeopleList] = useState([]);
+	let [isUpdated, setUpdated] = useState(true);
 	// let [peopleList, setPeopleList] = useState(data);
 	// let [isLoaded, setLoaded] = useState(true);
 
@@ -20,12 +21,13 @@ function App() {
 			.then((result) => {
 				setLoaded(true);
 				setPeopleList(result.data);
+				setUpdated(false);
 			})
 			.catch((error) => {
 				setLoaded(true);
 				setError(error);
 			});
-	}, []);
+	}, [isUpdated]);
 
 	function addEntry(name, age, _id, __v) {
 		setPeopleList(
@@ -36,18 +38,21 @@ function App() {
 	}
 
 	function removeEntry(id) {
-		// if (peopleList[index].__v == 0) {
-		// 	console.log('Не надо удалять');
-		// } else {
-		// 	setPeopleList(peopleList.filter((persone) => persone._id !== id));
-		// }
+		axios.delete(`http://178.128.196.163:3000/api/records/${id}`);
+		setUpdated(true);
+	}
+
+	function acceptChanges() {
+		setUpdated(true);
 	}
 
 	if (error) return <p>Error {error.message}</p>;
 	else if (!isLoaded) return <p>Loading...</p>;
 	else
 		return (
-			<TableContext.Provider value={{ peopleList, addEntry, removeEntry }}>
+			<TableContext.Provider
+				value={{ peopleList, addEntry, removeEntry, acceptChanges }}
+			>
 				<div className='content-container'>
 					<AddEntry key='add-entry' />
 					<Table key='table' />
