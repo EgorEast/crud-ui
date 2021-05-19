@@ -5,11 +5,14 @@ import TableContext from './tableContext';
 import AddEntry from './Components/AddEntry';
 import Changes from './Components/Changes';
 import axios from 'axios';
+// import data from './Components/data.json';
 
 function App() {
 	let [error, setError] = useState(null);
 	let [isLoaded, setLoaded] = useState(false);
 	let [peopleList, setPeopleList] = useState([]);
+	// let [peopleList, setPeopleList] = useState(data);
+	// let [isLoaded, setLoaded] = useState(true);
 
 	useEffect(() => {
 		axios
