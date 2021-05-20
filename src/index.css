@@ -4,9 +4,6 @@ body {
 	font-family: sans-serif;
 }
 
-.content-container {
-}
-
 .table {
 	border-collapse: collapse;
 	border: 2px solid grey;
@@ -27,11 +24,22 @@ td {
 .add-form__input {
 	min-width: 30px;
 }
+
+.persone__input_active {
+	background: lightgray;
+}
+
+.persone__input_no-active {
+	color: black;
+}
+
 .persone__input {
 	max-width: 100px;
+	margin: 0;
+	border: none;
+	outline: none;
 }
-.persone__input_active {
-}
+
 .td-delete-button {
 	padding: 0;
 }
@@ -42,6 +50,17 @@ td {
 	background: none;
 	justify-content: center;
 	text-align: center;
+}
+
+.changes-btn {
+	border: none;
+	background: none;
+}
+
+.changes-btn-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .chandes-container {

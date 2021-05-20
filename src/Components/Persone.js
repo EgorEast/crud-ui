@@ -6,7 +6,10 @@ function Persone(persone) {
 	let [age, setAge] = useState(persone.age);
 	let { removeEntry, saveChangesPersone } = useContext(TableContext);
 	let [readMode, setReadMode] = useState(false);
-
+	const classesForInput = ['persone__input_active', 'persone__input_no-active'];
+	let inputClass = '';
+	if (readMode) inputClass = classesForInput[0];
+	else inputClass = classesForInput[1];
 	function getButton() {
 		if (readMode)
 			return (
@@ -35,10 +38,10 @@ function Persone(persone) {
 			);
 	}
 	return [
-		<td key={`name-${persone.id}`}>
+		<td key={`name-${persone.id}`} className={inputClass}>
 			<input
 				key={`name-input-${persone.id}`}
-				className='persone__input'
+				className={`persone__input ${inputClass}`}
 				type='text'
 				value={name}
 				onChange={(event) => {
@@ -47,10 +50,10 @@ function Persone(persone) {
 				disabled={!readMode}
 			/>
 		</td>,
-		<td key={`ade-${persone.id}`}>
+		<td key={`ade-${persone.id}`} className={inputClass}>
 			<input
 				key={`age-input-${persone.id}`}
-				className='persone__input'
+				className={`persone__input ${inputClass}`}
 				type='number'
 				value={age}
 				onChange={(event) => {
@@ -60,7 +63,9 @@ function Persone(persone) {
 			/>
 		</td>,
 		<td key={`id-${persone.id}`}>{persone.id}</td>,
-		<td>{getButton()}</td>,
+		<td key={`getButton-${persone.id}`} className='changes-btn-container'>
+			{getButton()}
+		</td>,
 		<td className='td-delete-button' key={`td-delete-button-${persone.id}`}>
 			<button
 				key={`remove-button-${persone.id}`}
