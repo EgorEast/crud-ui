@@ -25,6 +25,10 @@ td {
 	min-width: 30px;
 }
 
+.error-field {
+	color: red;
+}
+
 .persone__input_active {
 	background: lightgray;
 }

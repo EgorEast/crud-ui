@@ -8,6 +8,10 @@ function randInt(min, max) {
 	return Math.floor(rand);
 }
 
+function errResult(strErr) {
+	return strErr ? <div className='error'>{strErr}</div> : null;
+}
+
 let newID = (idLenght, rootUrl) => {
 	let isCorrectId = true;
 	let id = '';
@@ -34,10 +38,11 @@ let newID = (idLenght, rootUrl) => {
 };
 
 function AddEntry() {
-	let { rootUrl, addEntry } = useContext(TableContext);
+	const { rootUrl, addEntry } = useContext(TableContext);
 
-	let [name, setName] = useState('');
-	let [age, setAge] = useState('');
+	const [name, setName] = useState('');
+	const [age, setAge] = useState('');
+	const [errorAdd, setErrorAdd] = useState('');
 	let id;
 
 	function submitHandler(event) {
@@ -50,7 +55,10 @@ function AddEntry() {
 			setName('');
 			setAge('');
 			id = 0;
-		} else console.log('Заполните все поля');
+			setErrorAdd('');
+		} else {
+			setErrorAdd('Ошибка! Заполните все поля.');
+		}
 	}
 
 	return (
@@ -76,6 +84,7 @@ function AddEntry() {
 			<button className='add-btn' type='submit'>
 				add
 			</button>
+			<div className='error-field'>{errResult(errorAdd)}</div>
 		</form>
 	);
 }
