@@ -21,7 +21,7 @@ function Persone(persone) {
 						saveChangesPersone(persone.id, name, age);
 					}}
 				>
-					Сохранить
+					&#10004;
 				</button>
 			);
 		else
@@ -33,7 +33,7 @@ function Persone(persone) {
 						setReadMode(true);
 					}}
 				>
-					Редактировать
+					&#9998;
 				</button>
 			);
 	}
