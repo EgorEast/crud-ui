@@ -4,19 +4,17 @@ import './App.css';
 import TableContext from './tableContext';
 import AddEntry from './Components/AddEntry';
 import axios from 'axios';
-// import data from './Components/data.json';
 
 function App() {
+	const rootUrl = 'http://178.128.196.163:3000/api/records';
 	let [error, setError] = useState(null);
 	let [isLoaded, setLoaded] = useState(false);
 	let [peopleList, setPeopleList] = useState([]);
 	let [isUpdated, setUpdated] = useState(true);
-	// let [peopleList, setPeopleList] = useState(data);
-	// let [isLoaded, setLoaded] = useState(true);
 
 	useEffect(() => {
 		axios
-			.get('http://178.128.196.163:3000/api/records')
+			.get(rootUrl)
 			.then((result) => {
 				setLoaded(true);
 				setPeopleList(result.data);
@@ -30,14 +28,12 @@ function App() {
 
 	function addEntry(name, age, _id, __v) {
 		axios
-			.put('http://178.128.196.163:3000/api/records', {
+			.put(rootUrl, {
 				_id,
 				data: { name, age },
 				__v,
 			})
-			.then((response) => {
-				// console.log(response);
-			})
+			.then((response) => {})
 			.catch((error) => {
 				console.log(error);
 			});
@@ -45,7 +41,19 @@ function App() {
 	}
 
 	function removeEntry(id) {
-		axios.delete(`http://178.128.196.163:3000/api/records/${id}`);
+		axios.delete(`${rootUrl}/${id}`);
+		setUpdated(true);
+	}
+
+	function saveChangesPersone(id, name, age) {
+		axios
+			.post(`${rootUrl}/${id}`, {
+				data: { name, age },
+			})
+			.then((response) => {})
+			.catch((error) => {
+				console.log(error);
+			});
 		setUpdated(true);
 	}
 
@@ -53,7 +61,15 @@ function App() {
 	else if (!isLoaded) return <p>Loading...</p>;
 	else
 		return (
-			<TableContext.Provider value={{ peopleList, addEntry, removeEntry }}>
+			<TableContext.Provider
+				value={{
+					rootUrl,
+					peopleList,
+					addEntry,
+					removeEntry,
+					saveChangesPersone,
+				}}
+			>
 				<div className='content-container'>
 					<AddEntry key='add-entry' />
 					<Table key='table' />
