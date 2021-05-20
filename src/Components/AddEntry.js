@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import TableContext from '../tableContext';
+import axios from 'axios';
 
 function randInt(min, max) {
 	// случайное число от min до (max+1)
@@ -7,29 +8,30 @@ function randInt(min, max) {
 	return Math.floor(rand);
 }
 
-let newID = (idLenght, peopleList) => {
+let newID = (idLenght) => {
 	let isCorrectId = true;
 	let id = '';
 	const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+
 	do {
+		id = '';
 		while (id.length < idLenght) {
 			const rand = randInt(0, 15);
 			id += rand < 10 ? rand : letters[rand - 10];
 		}
-		isCorrectId = true;
-		peopleList.forEach((persone) => {
-			if (id === persone._id) {
-				isCorrectId = false;
-				console.log('ne poluchaetsa');
-				return;
-			}
-		});
+
+		axios
+			.get(`http://178.128.196.163:3000/api/records/${id}`)
+			.then((result) => {
+				if (result.data === null) isCorrectId = true;
+				else isCorrectId = false;
+			});
 	} while (!isCorrectId);
 	return id;
 };
 
 function AddEntry() {
-	let { addEntry, peopleList } = useContext(TableContext);
+	let { addEntry } = useContext(TableContext);
 
 	let [name, setName] = useState('');
 	let [age, setAge] = useState('');
@@ -38,13 +40,13 @@ function AddEntry() {
 	function submitHandler(event) {
 		event.preventDefault();
 
-		id = newID(24, peopleList);
+		id = newID(24);
 
 		if (name && age) {
 			addEntry(name, age, id, 0);
 			setName('');
-			id = 0;
 			setAge('');
+			id = 0;
 		} else console.log('Заполните все поля');
 	}
 
@@ -54,7 +56,6 @@ function AddEntry() {
 				type='text'
 				className='add-form__input'
 				value={name}
-				name='firstName'
 				onChange={(event) => {
 					setName(event.target.value);
 				}}
@@ -64,7 +65,6 @@ function AddEntry() {
 				type='number'
 				className='add-form__input'
 				value={age}
-				name='age'
 				onChange={(event) => {
 					setAge(event.target.value);
 				}}
