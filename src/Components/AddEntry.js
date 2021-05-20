@@ -14,16 +14,21 @@ let newID = (idLenght, rootUrl) => {
 	const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
 
 	do {
+		let coincidence = false;
+
 		id = '';
+
 		while (id.length < idLenght) {
 			const rand = randInt(0, 15);
 			id += rand < 10 ? rand : letters[rand - 10];
 		}
-
 		axios.get(`${rootUrl}/${id}`).then((result) => {
-			if (result.data === null) isCorrectId = true;
-			else isCorrectId = false;
+			if (result.data === null) coincidence = false;
+			else coincidence = true;
 		});
+
+		if (coincidence) isCorrectId = false;
+		else isCorrectId = true;
 	} while (!isCorrectId);
 	return id;
 };
@@ -38,9 +43,9 @@ function AddEntry() {
 	function submitHandler(event) {
 		event.preventDefault();
 
-		id = newID(24, rootUrl);
-
 		if (name && age) {
+			id = newID(24, rootUrl);
+
 			addEntry(name, age, id, 0);
 			setName('');
 			setAge('');
