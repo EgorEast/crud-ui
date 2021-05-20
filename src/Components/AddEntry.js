@@ -8,7 +8,7 @@ function randInt(min, max) {
 	return Math.floor(rand);
 }
 
-let newID = (idLenght) => {
+let newID = (idLenght, rootUrl) => {
 	let isCorrectId = true;
 	let id = '';
 	const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
@@ -20,18 +20,16 @@ let newID = (idLenght) => {
 			id += rand < 10 ? rand : letters[rand - 10];
 		}
 
-		axios
-			.get(`http://178.128.196.163:3000/api/records/${id}`)
-			.then((result) => {
-				if (result.data === null) isCorrectId = true;
-				else isCorrectId = false;
-			});
+		axios.get(`${rootUrl}/${id}`).then((result) => {
+			if (result.data === null) isCorrectId = true;
+			else isCorrectId = false;
+		});
 	} while (!isCorrectId);
 	return id;
 };
 
 function AddEntry() {
-	let { addEntry } = useContext(TableContext);
+	let { rootUrl, addEntry } = useContext(TableContext);
 
 	let [name, setName] = useState('');
 	let [age, setAge] = useState('');
@@ -40,7 +38,7 @@ function AddEntry() {
 	function submitHandler(event) {
 		event.preventDefault();
 
-		id = newID(24);
+		id = newID(24, rootUrl);
 
 		if (name && age) {
 			addEntry(name, age, id, 0);
