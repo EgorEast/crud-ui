@@ -7,10 +7,10 @@ import axios from 'axios';
 
 function App() {
 	const rootUrl = 'http://178.128.196.163:3000/api/records';
-	let [error, setError] = useState(null);
-	let [isLoaded, setLoaded] = useState(false);
-	let [peopleList, setPeopleList] = useState([]);
-	let [isUpdated, setUpdated] = useState(true);
+	const [error, setError] = useState(null);
+	const [isLoaded, setLoaded] = useState(false);
+	const [peopleList, setPeopleList] = useState([]);
+	const [isUpdated, setUpdated] = useState(true);
 
 	useEffect(() => {
 		axios
