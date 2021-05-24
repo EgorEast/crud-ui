@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react';
 import TableContext from '../tableContext';
 
 function Persone(persone) {
-	let [name, setName] = useState(persone.name);
-	let [age, setAge] = useState(persone.age);
-	let { removeEntry, saveChangesPersone } = useContext(TableContext);
-	let [readMode, setReadMode] = useState(false);
+	const [name, setName] = useState(persone.name);
+	const [age, setAge] = useState(persone.age);
+	const { removeEntry, saveChangesPersone } = useContext(TableContext);
+	const [readMode, setReadMode] = useState(false);
 	const classesForInput = ['persone__input_active', 'persone__input_no-active'];
 	let inputClass = '';
 	if (readMode) inputClass = classesForInput[0];

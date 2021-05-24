@@ -3,7 +3,7 @@ import Persone from './Persone';
 import TableContext from '../tableContext';
 
 function Table() {
-	let { peopleList } = useContext(TableContext);
+	const { peopleList } = useContext(TableContext);
 	return (
 		<table className='table'>
 			<thead className='table-head'>
