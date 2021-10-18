@@ -1,8 +1,10 @@
-.local-storage-version-h1 {
+.local-storage-version-h1,
+.error-field,
+.buttons,
+.loader {
 	text-align: center;
 }
 .buttons {
-	text-align: center;
 	padding: 10px;
 }
 .buttons button {

@@ -100,50 +100,56 @@ function App() {
 			});
 	}
 
-	if (error) return <p>Error {error.message}</p>;
-	else if (!isLoaded) return <p>Loading...</p>;
-	else
-		return (
-			<TableContext.Provider
-				value={{
-					rootUrl,
-					peopleList,
-					addEntry,
-					removeEntry,
-					saveChangesPersone,
-				}}
-			>
-				<div className='content-container'>
-					{isTrouthLocalStorage ? (
-						<h1 className='local-storage-version-h1'>
-							Work through Local Storage
-						</h1>
-					) : null}
-					<AddEntry key='add-entry' />
-					<Table key='table' />
-					<div className='buttons'>
-						<button
-							onClick={() => {
-								setPeopleList([]);
-								setIsLoaded(false);
-								setIsTrouthLocalStorage(false);
-							}}
-						>
-							Through Server
-						</button>
-						<button
-							onClick={() => {
-								setPeopleList([]);
-								setIsLoaded(false);
-								setIsTrouthLocalStorage(true);
-							}}
-						>
-							Through Local Storage
-						</button>
-					</div>
+	return (
+		<TableContext.Provider
+			value={{
+				rootUrl,
+				peopleList,
+				addEntry,
+				removeEntry,
+				saveChangesPersone,
+			}}
+		>
+			<div className='content-container'>
+				{isTrouthLocalStorage ? (
+					<h1 className='local-storage-version-h1'>
+						Work through Local Storage
+					</h1>
+				) : null}
+				{error ? (
+					<p className='error-field'>Error: {error.message}</p>
+				) : !isLoaded ? (
+					<p className='loader'>Loading...</p>
+				) : (
+					<>
+						<AddEntry key='add-entry' />
+						<Table key='table' />
+					</>
+				)}
+
+				<div className='buttons'>
+					<button
+						onClick={() => {
+							setPeopleList([]);
+							setIsLoaded(false);
+							setIsTrouthLocalStorage(false);
+						}}
+					>
+						Through Server
+					</button>
+					<button
+						onClick={() => {
+							setPeopleList([]);
+							setIsLoaded(false);
+							setIsTrouthLocalStorage(true);
+						}}
+					>
+						Through Local Storage
+					</button>
 				</div>
-			</TableContext.Provider>
-		);
+			</div>
+		</TableContext.Provider>
+	);
 }
 
 export default App;
