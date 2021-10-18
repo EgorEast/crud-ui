@@ -36,7 +36,7 @@ function App() {
 			});
 	}, [userListService, isLoaded, isTrouthLocalStorage]);
 
-	async function addEntry(name, age, _id, __v) {
+	function addEntry(name, age, _id, __v) {
 		let promise;
 
 		if (isTrouthLocalStorage) {
