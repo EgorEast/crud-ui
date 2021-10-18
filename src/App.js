@@ -1,60 +1,103 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Table from './Components/Table';
 import './App.css';
 import TableContext from './tableContext';
 import AddEntry from './Components/AddEntry';
 import axios from 'axios';
+import UserListService from './UserList/UserListService';
 
 function App() {
 	const rootUrl = 'http://178.128.196.163:3000/api/records';
 	const [error, setError] = useState(null);
-	const [isLoaded, setLoaded] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 	const [peopleList, setPeopleList] = useState([]);
-	const [isUpdated, setUpdated] = useState(true);
+	const [isTrouthLocalStorage, setIsTrouthLocalStorage] = useState(false);
+
+	const userListService = useMemo(() => {
+		return new UserListService();
+	}, []);
 
 	useEffect(() => {
-		axios
-			.get(rootUrl)
+		let data = [];
+		if (isTrouthLocalStorage) {
+			data = userListService.getPersonList();
+		} else {
+			data = axios.get(rootUrl);
+		}
+
+		data
 			.then((result) => {
-				setLoaded(true);
+				setIsLoaded(true);
 				setPeopleList(result.data);
-				setUpdated(false);
+				setError(null);
 			})
 			.catch((error) => {
-				setLoaded(true);
 				setError(error);
 			});
-	}, [isUpdated]);
+	}, [userListService, isLoaded, isTrouthLocalStorage]);
 
-	function addEntry(name, age, _id, __v) {
-		axios
-			.put(rootUrl, {
+	async function addEntry(name, age, _id, __v) {
+		let promise;
+
+		if (isTrouthLocalStorage) {
+			promise = userListService.addPerson({
 				_id,
 				data: { name, age },
 				__v,
+			});
+		} else {
+			promise = axios.put(rootUrl, {
+				_id,
+				data: { name, age },
+				__v,
+			});
+		}
+		promise
+			.then((result) => {
+				setPeopleList((prev) => [...prev, result.data]);
 			})
-			.then((response) => {})
 			.catch((error) => {
 				console.log(error);
 			});
-		setUpdated(true);
 	}
 
 	function removeEntry(id) {
-		axios.delete(`${rootUrl}/${id}`);
-		setUpdated(true);
+		let promise;
+		if (isTrouthLocalStorage) {
+			promise = userListService.deletePerson(id);
+		} else {
+			promise = axios.delete(`${rootUrl}/${id}`);
+		}
+		promise
+			.then((response) => {
+				if (response.data) {
+					const newList = peopleList.filter((elem) =>
+						elem._id !== id ? elem : null
+					);
+					setPeopleList(newList);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	function saveChangesPersone(id, name, age) {
-		axios
-			.post(`${rootUrl}/${id}`, {
+		let promise;
+		if (isTrouthLocalStorage) {
+			promise = userListService.updatePerson(id, {
 				data: { name, age },
-			})
+			});
+		} else {
+			promise = axios.post(`${rootUrl}/${id}`, {
+				data: { name, age },
+			});
+		}
+		promise
 			.then((response) => {})
 			.catch((error) => {
 				console.log(error);
 			});
-		setUpdated(true);
 	}
 
 	if (error) return <p>Error {error.message}</p>;
@@ -71,8 +114,33 @@ function App() {
 				}}
 			>
 				<div className='content-container'>
+					{isTrouthLocalStorage ? (
+						<h1 className='local-storage-version-h1'>
+							Work through Local Storage
+						</h1>
+					) : null}
 					<AddEntry key='add-entry' />
 					<Table key='table' />
+					<div className='buttons'>
+						<button
+							onClick={() => {
+								setPeopleList([]);
+								setIsLoaded(false);
+								setIsTrouthLocalStorage(false);
+							}}
+						>
+							Through Server
+						</button>
+						<button
+							onClick={() => {
+								setPeopleList([]);
+								setIsLoaded(false);
+								setIsTrouthLocalStorage(true);
+							}}
+						>
+							Through Local Storage
+						</button>
+					</div>
 				</div>
 			</TableContext.Provider>
 		);
