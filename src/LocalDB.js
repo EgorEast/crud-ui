@@ -1,17 +1,17 @@
-const CRUD_STORAGE = 'CRUD-Storage';
 export default class LocalDB {
-	constructor() {
-		if (!localStorage.getItem(CRUD_STORAGE))
-			localStorage.setItem(CRUD_STORAGE, '[]');
+	constructor(itemName) {
+		this.storageName = itemName;
+		if (!localStorage.getItem(this.storageName))
+			localStorage.setItem(this.storageName, '[]');
 	}
 	getData() {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				let data = null;
 				try {
-					data = localStorage.getItem(CRUD_STORAGE);
+					data = localStorage.getItem(this.storageName);
 				} catch (error) {
-					reject('Storage is empty');
+					reject(error);
 				}
 				resolve(JSON.parse(data));
 			}, 300);
@@ -21,7 +21,7 @@ export default class LocalDB {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				try {
-					localStorage.setItem(CRUD_STORAGE, JSON.stringify(data));
+					localStorage.setItem(this.storageName, JSON.stringify(data));
 				} catch (error) {
 					reject(error);
 				}
@@ -31,7 +31,7 @@ export default class LocalDB {
 
 	removeDB() {
 		setTimeout(() => {
-			localStorage.removeItem(CRUD_STORAGE);
+			localStorage.removeItem(this.storageName);
 		}, 300);
 	}
 }

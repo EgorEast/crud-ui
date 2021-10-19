@@ -2,7 +2,7 @@ import LocalDB from '../LocalDB';
 
 export default class UserListService {
 	constructor() {
-		this.localHostDB = new LocalDB();
+		this.localHostDB = new LocalDB('CRUD-Storage');
 	}
 	async getPersonList() {
 		return new Promise((resolve, reject) => {
