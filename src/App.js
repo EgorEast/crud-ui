@@ -130,7 +130,6 @@ function App() {
 				<div className='buttons'>
 					<button
 						onClick={() => {
-							setPeopleList([]);
 							setIsLoaded(false);
 							setIsTrouthLocalStorage(false);
 						}}
@@ -139,7 +138,6 @@ function App() {
 					</button>
 					<button
 						onClick={() => {
-							setPeopleList([]);
 							setIsLoaded(false);
 							setIsTrouthLocalStorage(true);
 						}}
