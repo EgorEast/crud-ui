@@ -4,7 +4,7 @@ export default class UserListService {
 	constructor() {
 		this.localHostDB = new LocalDB('CRUD-Storage');
 	}
-	async getPersonList() {
+	getPersonList() {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				const data = this.localHostDB.getData();
@@ -18,7 +18,7 @@ export default class UserListService {
 			}, 300);
 		});
 	}
-	async addPerson(newPerson) {
+	addPerson(newPerson) {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				const data = this.localHostDB.getData();
@@ -37,7 +37,7 @@ export default class UserListService {
 			}, 300);
 		});
 	}
-	async updatePerson(id, newData) {
+	updatePerson(id, newData) {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				const data = this.localHostDB.getData();
@@ -60,7 +60,7 @@ export default class UserListService {
 			}, 300);
 		});
 	}
-	async deletePerson(id) {
+	deletePerson(id) {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				const data = this.localHostDB.getData();
