@@ -22,7 +22,7 @@ function Table() {
 						<tr key={`tr-${index}`}>
 							<td>{index + 1}</td>
 							<Persone
-								key={`persone-${index}`}
+								key={`persone-${persone._id}`}
 								id={persone._id}
 								name={persone.data.name}
 								age={persone.data.age}
